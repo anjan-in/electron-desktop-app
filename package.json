@@ -20,6 +20,15 @@
   "homepage": "https://github.com/anjan-in/electron-desktop-app#readme",
   "devDependencies": {
     "electron": "^34.2.0",
+    "electron-builder": "^25.1.8",
     "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "auto-launch": "^5.0.6",
+    "better-sqlite3": "^11.8.1",
+    "electron-updater": "^6.3.9",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "settings": "^0.1.1"
   }
 }

@@ -6,10 +6,64 @@
     <title>Electron App</title>
 </head>
 <body>
-    <h1 id="app-name"></h1>
-    
+    <h1>Electron File Handling</h1>
+    <button id="open-btn">Open File</button>
+    <button id="save-btn">Save File</button>
+    <button id="save-note-btn">Save Note</button>
+    <ul id="notes-list"></ul>
+    <textarea id="file-content" rows="10" cols="50"></textarea>
+
+    <label>
+        <input type="checkbox" id="auto-launch">
+        Enable Auto-Launch on Startup
+    </label>
+
+    <div id="update-message" style="display: none;">
+        <p>New update available! Restart to apply.</p>
+        <button id="restart-btn">Restart</button>
+    </div>
+
     <script>
-        document.getElementById('app-name').innerText = window.electron.appName;
+        document.getElementById('open-btn').addEventListener('click', async () => {
+            const content = await window.electron.openFile();
+            if (content) document.getElementById('file-content').value = content;
+        });
+
+        document.getElementById('save-btn').addEventListener('click', async () => {
+            const content = document.getElementById('file-content').value;
+            await window.electron.saveFile(content);
+        });
+
+        document.getElementById('save-note-btn').addEventListener('click', async () => {
+            const content = document.getElementById('file-content').value;
+            await window.electron.saveNote(content);
+            loadNotes();
+        });
+
+        document.getElementById("auto-launch").addEventListener("change", (event) => {
+            window.electron.toggleAutoLaunch(event.target.checked);
+        });
+
+        window.electron.onUpdateAvailable(() => {
+            document.getElementById("update-message").style.display = "block";
+        });
+
+        document.getElementById("restart-btn").addEventListener("click", () => {
+            window.electron.restartApp();
+        });
+
+        async function loadNotes() {
+            const notes = await window.electron.getNotes();
+            const list = document.getElementById('notes-list');
+            list.innerHTML = '';
+            notes.forEach(note => {
+                const li = document.createElement('li');
+                li.textContent = note.content;
+                list.appendChild(li);
+            });
+        }
+
+        loadNotes();
     </script>
 </body>
 </html>
