@@ -1,0 +1,25 @@
+{
+  "name": "electron-desktop-app",
+  "version": "1.0.0",
+  "description": "A simple desktop application built using Electron.js. This project serves as a foundation for creating cross-platform desktop apps with HTML, CSS, and JavaScript.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anjan-in/electron-desktop-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anjan-in/electron-desktop-app/issues"
+  },
+  "homepage": "https://github.com/anjan-in/electron-desktop-app#readme",
+  "devDependencies": {
+    "electron": "^34.2.0",
+    "electron-packager": "^17.1.2"
+  }
+}
